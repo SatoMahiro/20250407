@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>113下學期程式設計期中報告</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <script src="sketch.js"></script>
+    <!-- 選單 -->
+    <ul class="menu" id="menu">
+      <li>
+        首頁
+        <ul class="submenu">
+          <li>自我介紹</li>
+          <li>
+            作品集
+            <ul class="submenu">
+              <li><a href="#" onclick="loadIframe('https://hackmd.io/@cfchen/S1xdlbl0Jl')">第一周作業</a></li>
+              <li><a href="#" onclick="loadIframe('https://hackmd.io/kpK1UnZcRE2ZQqg787bkiw')">第二周作業</a></li>
+              <li><a href="#" onclick="loadIframe('#')">第三周作業</a></li>
+              <li><a href="#" onclick="loadIframe('#')">第四周作業</a></li>
+            </ul>
+          </li>
+          <li>測驗卷</li>
+          <li>教學影片</li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- iframe 區域 -->
+    <div class="iframe-container">
+      <iframe id="content-frame" src="" frameborder="0"></iframe>
+    </div>
+
+    <script>
+      // 動態載入 iframe 的內容
+      function loadIframe(url) {
+        const iframeContainer = document.querySelector('.iframe-container');
+        const iframe = document.getElementById('content-frame');
+        iframe.src = url;
+        iframeContainer.style.display = 'block'; // 顯示 iframe
+      }
+
+      // 控制選單顯示與隱藏
+      const menu = document.getElementById('menu');
+      let isHoveringMenu = false;
+
+      // 偵測滑鼠是否在選單上
+      menu.addEventListener('mouseenter', () => {
+        isHoveringMenu = true;
+        menu.style.display = 'block'; // 顯示選單
+      });
+
+      menu.addEventListener('mouseleave', () => {
+        isHoveringMenu = false;
+      });
+
+      document.addEventListener('mousemove', (event) => {
+        if (event.clientY >= 0 && event.clientY <= 200) {
+          menu.style.display = 'block'; // 顯示選單
+        } else if (!isHoveringMenu) {
+          menu.style.display = 'none'; // 隱藏選單
+        }
+      });
+    </script>
+  </body>
+</html>
